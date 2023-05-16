@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio Ghibli Films</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>Studio Ghibli Films</h1>
+    <div class="movies">
+      <div class="movie" v-for="film in films" :key="film.id" @click="showFilmDetails(film)">
+        <div class="poster">
+          <img :src="film.poster" :alt="film.title">
+        </div>
+        <div class="title">{{ film.title }}</div>
+      </div>
+    </div>
+    <div id="modal" v-if="selectedFilm" @click.self="closeMovieDetails">
+      <div class="modal-content">
+        <span class="close" @click="closeMovieDetails">&times;</span>
+        <h2>{{ selectedFilm.title }}</h2>
+        <p><strong>Release Date:</strong> {{ selectedFilm.release_date }}</p>
+        <p><strong>Producer:</strong> {{ selectedFilm.producer }}</p>
+        <p><strong>Rating:</strong> {{ selectedFilm.score }}</p>
+        <p><strong>Running Time:</strong> {{ selectedFilm.running_time }}</p>
+        <p><strong>Synopsis:</strong> {{ selectedFilm.synopsis }}</p>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
